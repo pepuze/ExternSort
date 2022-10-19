@@ -1,0 +1,8 @@
+﻿  main.cpp
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(61,12): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(50): message : while compiling class template member function 'unsigned int ExternalSort<int>::splitIn2Files(std::fstream &,std::fstream &,std::fstream &,const unsigned int)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(29): message : see reference to function template instantiation 'unsigned int ExternalSort<int>::splitIn2Files(std::fstream &,std::fstream &,std::fstream &,const unsigned int)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(26): message : while compiling class template member function 'void ExternalSort<int>::mergeSort(const std::string &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\main.cpp(6): message : see reference to function template instantiation 'void ExternalSort<int>::mergeSort(const std::string &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\main.cpp(5): message : see reference to class template instantiation 'ExternalSort<int>' being compiled
+  lab2.vcxproj -> C:\Everything\labs\alg_ds\lab2\lab2\x64\Debug\lab2.exe
