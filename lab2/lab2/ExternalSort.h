@@ -7,7 +7,7 @@
 
 template<class T>
 class ExternalSort {
-	unsigned int splitIn2Files(std::fstream&, std::fstream&, std::fstream&, const unsigned int); //Разбиение значений из осн. файла в вспомогательные группами по n
+	unsigned int splitIn2Files(std::fstream&, std::fstream&, std::fstream&, const unsigned int); //Разбиение значений из осн. файла в вспомогательные сериями опред. размера
 	void mergeInFile(std::fstream&, std::fstream&, std::fstream&, const unsigned int); //Слияние упорядоченных последовательностей из вспомог. файлов в осн.
 	void printValues(const std::string&);
 	void clearFile(const std::string& path) { std::ofstream file(path, std::ios::out | std::ofstream::trunc); }; //Отчистка файла
@@ -26,15 +26,13 @@ template<class T>
 void ExternalSort<T>::mergeSort(const std::string& path) {
 	const std::string sub1 = "subFile1.txt", sub2 = "subFile2.txt"; //Имена вспомогательных файлов
 	std::fstream mainFile(path, std::ios::in | std::ios::out), subFile1(sub1, std::ios::in | std::ios::out | std::fstream::trunc), subFile2(sub2, std::ios::in | std::ios::out | std::fstream::trunc);
+	
 	for (unsigned int groupSize = 1; groupSize < splitIn2Files(mainFile, subFile1, subFile2, groupSize); groupSize *= 2) //Пока общее кол-во элементов < размера упоряд. послед. 
 	{
-		printValues(path);
-		printValues(sub1); printValues(sub2);
 		clearFile(path);
 		mergeInFile(mainFile, subFile1, subFile2, groupSize); //Слияние упорядоченных групп размера groupSize в осн. файл
 		clearFile(sub1); clearFile(sub2);
 	}
-	printValues(path);
 }
 
 template<class T>
@@ -52,16 +50,12 @@ unsigned int ExternalSort<T>::splitIn2Files(std::fstream& input, std::fstream& o
 	input.seekg(std::ios::beg); output1.seekp(std::ios::beg); output2.seekp(std::ios::beg);
 	T temp;
 	unsigned int size = 0;
-	bool swapped = 0;
 	while (input >> temp) {
 		output1 << temp << " ";
 		++size;
-		if (size % groupSize == 0) {
+		if (size % groupSize == 0) 
 			std::swap(output1, output2);
-			swapped == !swapped;
-		}
 	}
-	if (swapped) std::swap(output1, output2);
 	output1.flush(); output2.flush();
 	return size;
 }

@@ -2,7 +2,8 @@
 #include <string>
 
 int main() {
-	ExternalSort<int> extSort;
-	extSort.mergeSort("test.txt");
+	//ExternalSort<std::string> extSort;
+	//extSort.mergeSort("test.txt");
+	
 	return 0;
 }
