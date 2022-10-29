@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+//Класс подсчета значений последовательности Фибоначчи n порядка
 struct Fibonacci {
 	Fibonacci(const unsigned int);
 	Fibonacci();
