@@ -6,6 +6,7 @@ struct Fibonacci {
 	Fibonacci();
 	
 	unsigned long long operator()(const unsigned int);
+	unsigned int getOrder() const { return order; }
 
 private:
 	const unsigned int order;

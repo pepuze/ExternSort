@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdio>
 
+ //Проверка на возможность считать значение типа T из потока без перестановки указателя считывания потока
 template<class T>
 bool valReadable(std::ifstream& input) {
 	T temp;
@@ -26,7 +27,7 @@ bool valReadable(std::ifstream& input, T& t) {
 }
 
 
-
+//Шаблон класса работы с потоком, содержащим серии значений типа T
 template<class T>
 class FileSeriesHandler {
 	std::string filePath;
@@ -49,8 +50,8 @@ public:
 	unsigned int getSeries() const { return series; }
 	bool seriesFinished() const { return seriesEnd; }
 	T getNext() const { return nextVal; }
-	T peekNext();
 	std::string getPath() const { return filePath; }
+	T peekNext();
 	void swap(FileSeriesHandler<T>&);
 	void newSeries() { seriesEnd = 0; }
 	void incSeries() { ++series; }

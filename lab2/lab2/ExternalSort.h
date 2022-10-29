@@ -4,17 +4,18 @@
 #include <list>
 
 
+//Шаблон класса внешних сортировок: Прямое слияние | Многофазная сортировка
 template<class T>
 class ExternalSort {
 public:
-	unsigned int splitIn2Files(const std::string&, const std::string&, const std::string&, const unsigned int);
-	void merge2InFile(const std::string&, const std::string&, const std::string&, const unsigned int);
-	bool dumpVals(std::ifstream&, std::ofstream&, unsigned int);
-	bool multiphaseSplit(const std::string&, std::list<FileSeriesHandler<T>>&, const unsigned int);
-	bool multiphaseMerge(std::list<FileSeriesHandler<T>>&);
-	void clearFiles(std::list<FileSeriesHandler<T>>&);
-	void copy(const std::string&, const std::string&);
-	unsigned int countSeries(const std::string&);
+	unsigned int splitIn2Files(const std::string&, const std::string&, const std::string&, const unsigned int); //Разбиение значений из файла группами опред. размера
+	void merge2InFile(const std::string&, const std::string&, const std::string&, const unsigned int); //Слияние в двух файлов в файл группами опред. размера
+	bool dumpVals(std::ifstream&, std::ofstream&, unsigned int); //Считывание и вывод n значений из потока ввода в поток вывода, возвращает 1 если достигнут конец потока ввода
+	bool multiphaseSplit(const std::string&, std::list<FileSeriesHandler<T>>&, const unsigned int); //Разбиение на файлы для многофазной сортировки, возвращает 1 если исход. файл отсортирован
+	bool multiphaseMerge(std::list<FileSeriesHandler<T>>&); //Слияние для многофаз. сортировки, возвращает 1 если есть файлы, в к-х закончились серии
+	void clearFiles(std::list<FileSeriesHandler<T>>&); //Избавление от всех файлов без серий кроме одного, перестановка этого файла в конец списка
+	void copy(const std::string&, const std::string&); //Копирование значений из файла в файл
+	unsigned int countSeries(const std::string&); //Подсчет к-ва серий в файле
 
 public:
 	void mergeSort(const std::string&); //Сортировка прямым слиянием
