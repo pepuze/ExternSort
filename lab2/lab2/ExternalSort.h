@@ -1,146 +1,177 @@
 #pragma once
-#include <iostream>
-#include <fstream>
-#include <string>
+#include "FileSeriesHandler.h"
 #include "Fibonacci.h"
+#include <list>
 
 
 template<class T>
 class ExternalSort {
-	unsigned int splitIn2Files(std::fstream&, std::fstream&, std::fstream&, const unsigned int); //Разбиение значений из осн. файла в вспомогательные сериями опред. размера
-	void mergeInFile(std::fstream&, std::fstream&, std::fstream&, const unsigned int); //Слияние упорядоченных последовательностей из вспомог. файлов в осн.
-	void printValues(const std::string&);
-	void clearFile(const std::string& path) { std::ofstream file(path, std::ios::out | std::ofstream::trunc); }; //Отчистка файла
-	bool dumpValues(std::fstream&, std::fstream&, unsigned int); //Сливание n значений из одного файла в другой
-	bool valuesExist(std::fstream&); //Проверка на наличие в потоке значений, к-х можно считать
+public:
+	unsigned int splitIn2Files(const std::string&, const std::string&, const std::string&, const unsigned int);
+	void merge2InFile(const std::string&, const std::string&, const std::string&, const unsigned int);
+	bool dumpVals(std::ifstream&, std::ofstream&, unsigned int);
+	bool multiphaseSplit(const std::string&, std::list<FileSeriesHandler<T>>&, const unsigned int);
+	bool multiphaseMerge(std::list<FileSeriesHandler<T>>&);
+	void clearFiles(std::list<FileSeriesHandler<T>>&);
+	void copy(const std::string&, const std::string&);
+	unsigned int countSeries(const std::string&);
 
 public:
 	void mergeSort(const std::string&); //Сортировка прямым слиянием
 	void multiphaseSort(const std::string&, const unsigned int); //Многофазная сортировка 
-	unsigned int countSeries(const std::string&); //Подсчет серий в файле path
-
 };
 
 
 template<class T>
-void ExternalSort<T>::mergeSort(const std::string& path) {
-	const std::string sub1 = "subFile1.txt", sub2 = "subFile2.txt"; //Имена вспомогательных файлов
-	std::fstream mainFile(path, std::ios::in | std::ios::out), subFile1(sub1, std::ios::in | std::ios::out | std::fstream::trunc), subFile2(sub2, std::ios::in | std::ios::out | std::fstream::trunc);
-	
-	for (unsigned int groupSize = 1; groupSize < splitIn2Files(mainFile, subFile1, subFile2, groupSize); groupSize *= 2) //Пока общее кол-во элементов < размера упоряд. послед. 
-	{
-		clearFile(path);
-		mergeInFile(mainFile, subFile1, subFile2, groupSize); //Слияние упорядоченных групп размера groupSize в осн. файл
-		clearFile(sub1); clearFile(sub2);
+void ExternalSort<T>::mergeSort(const std::string& mainFile) {
+	const std::string subFile1 = "subFile1.txt", subFile2 = "subFile2.txt";
+	for (unsigned int groupSize = 1; groupSize < splitIn2Files(mainFile, subFile1, subFile2, groupSize); groupSize *= 2)
+		merge2InFile(mainFile, subFile1, subFile2, groupSize);
+}
+
+template<class T>
+void ExternalSort<T>::multiphaseSort(const std::string& mainFile, const unsigned int nPhases) {
+	std::list<FileSeriesHandler<T>> subFiles;
+	if (multiphaseSplit(mainFile, subFiles, nPhases)) return;;
+
+	while (subFiles.size() > 2) {
+		while (!multiphaseMerge(subFiles)) {}
+		clearFiles(subFiles);
 	}
+	copy(subFiles.front().getPath(), mainFile);
 }
 
 template<class T>
-void ExternalSort<T>::multiphaseSort(const std::string& path, const unsigned int nPhases) {
-	std::vector<std::fstream> subFiles(nPhases);
-	for (unsigned int i = 0; i < nPhases; ++i) subFiles[i].open("m" + std::to_string(i) + ".txt", std::ios::out | std::ios::in | std::ofstream::trunc);
-	const unsigned int nSeries = countSeries(path);
-
-
-}
-
-template<class T>
-unsigned int ExternalSort<T>::splitIn2Files(std::fstream& input, std::fstream& output1, std::fstream& output2, const unsigned int groupSize) {
-	input.clear(); output1.clear(); output2.clear();
-	input.seekg(std::ios::beg); output1.seekp(std::ios::beg); output2.seekp(std::ios::beg);
+unsigned int ExternalSort<T>::splitIn2Files(const std::string& inputFile, const std::string& outputFile1, const std::string& outputFile2, const unsigned int groupSize) {
+	std::ifstream input(inputFile);
+	std::ofstream output1(outputFile1), output2(outputFile2);
 	T temp;
-	unsigned int size = 0;
+	unsigned int nElements = 0;
+
 	while (input >> temp) {
 		output1 << temp << " ";
-		++size;
-		if (size % groupSize == 0) 
-			std::swap(output1, output2);
+		if (++nElements % groupSize == 0) std::swap(output1, output2);
 	}
-	output1.flush(); output2.flush();
-	return size;
+	return nElements;
 }
 
 template<class T>
-void ExternalSort<T>::mergeInFile(std::fstream& output, std::fstream& input1, std::fstream& input2, const unsigned int groupSize) {
-	output.clear(); input1.clear(); input2.clear();
-	output.seekp(std::ios::beg); input1.seekg(std::ios::beg); input2.seekg(std::ios::beg);
+void ExternalSort<T>::merge2InFile(const std::string& outputFile, const std::string& inputFile1, const std::string& inputFile2, const unsigned int groupSize) {
+	std::ofstream output(outputFile); 
+	std::ifstream input1(inputFile1), input2(inputFile2);
+	unsigned int groupCount1 = groupSize, groupCount2 = groupSize;
 	T temp1, temp2;
-	unsigned int groupSize1 = groupSize, groupSize2 = groupSize;
-	bool allValuesProcessed = 0;
-	
-	while (!allValuesProcessed) {
-		if (groupSize1 == groupSize && groupSize2 == groupSize) { input1 >> temp1; input2 >> temp2; }
+	bool allValsProcessed = 0;
 
+	while (!allValsProcessed) {
+		if (groupCount1 == groupCount2 && groupCount1 == groupSize) { input1 >> temp1; input2 >> temp2; }
 		if (temp1 < temp2) {
 			output << temp1 << " ";
-			if (!valuesExist(input1)) allValuesProcessed = 1;
-			if (--groupSize1 == 0 || allValuesProcessed) {
+			if (!valReadable<T>(input1)) allValsProcessed = 1;
+			if (--groupCount1 == 0 || allValsProcessed) {
 				output << temp2 << " ";
-				if (!dumpValues(input2, output, groupSize2 - 1)) allValuesProcessed = 1;
-				groupSize1 = groupSize2 = groupSize;
+				if (dumpVals(input2, output, groupCount2 - 1)) allValsProcessed = 1;
+				groupCount1 = groupCount2 = groupSize;
 				continue;
 			}
-			else if(!allValuesProcessed) input1 >> temp1;
+			input1 >> temp1;
 		}
 		else {
 			output << temp2 << " ";
-			if (!valuesExist(input2)) allValuesProcessed = 1;
-			if (--groupSize2 == 0 || allValuesProcessed) {
+			if (!valReadable<T>(input2)) allValsProcessed = 1;
+			if (--groupCount2 == 0 || allValsProcessed) {
 				output << temp1 << " ";
-				if (!dumpValues(input1, output, groupSize1 - 1)) allValuesProcessed = 1;
-				groupSize1 = groupSize2 = groupSize;
+				if (dumpVals(input1, output, groupCount1 - 1)) allValsProcessed = 1;
+				groupCount1 = groupCount2 = groupSize;
 				continue;
 			}
-			else if (!allValuesProcessed) input2 >> temp2;
+			input2 >> temp2;
 		}
 	}
 
 	while (input1 >> temp1) output << temp1 << " ";
-	while (input2 >> temp2) output << temp2 << " ";
-	output.flush();
 }
 
 template<class T>
-bool ExternalSort<T>::valuesExist(std::fstream& input) {
-	const std::ios::streampos pos = input.tellg();
+bool ExternalSort<T>::dumpVals(std::ifstream& from, std::ofstream& to, unsigned int amount) {
 	T temp;
-	if (input >> temp) {
-		input.seekg(pos);
-		return 1;
+	while (amount--) {
+		if (!(from >> temp)) return 1;
+		to << temp << " ";
 	}
+	if (!valReadable<T>(from)) return 1;
 	return 0;
 }
 
 template<class T>
-bool ExternalSort<T>::dumpValues(std::fstream& from, std::fstream& to, unsigned int amount) {
-	T temp;
-	while (amount--) {
-		if (from >> temp) to << temp << " ";
-		else return 0;
-	}
-	if (!valuesExist(from)) return 0;
-	return 1;
-}
-
-template<class T>
-void ExternalSort<T>::printValues(const std::string& path) {
-	std::cout << path << ": ";
-	std::ifstream input(path);
-	T temp;
-	while (input >> temp) { std::cout << temp << " "; }
-	std::cout << "\n";
-	input.close();
-};
-
-template<class T>
-unsigned int ExternalSort<T>::countSeries(const std::string& path) {
-	std::ifstream file(path);
+unsigned int ExternalSort<T>::countSeries(const std::string& filePath) {
 	unsigned int count = 1;
+	std::ifstream input(filePath);
 	T temp, tempPrev;
-	if (!(file >> tempPrev)) return 0;
-	while (file >> temp) {
+	if (!(input >> tempPrev)) return 0;
+	while (input >> temp) {
 		if (temp < tempPrev) ++count;
 		tempPrev = temp;
 	}
 	return count;
+}
+
+template<class T>
+bool  ExternalSort<T>::multiphaseSplit(const std::string& mainFile, std::list<FileSeriesHandler<T>>& subFiles, const unsigned int nPhases) {
+	Fibonacci fib(nPhases - 2);
+	unsigned int nSeries = countSeries(mainFile), fibIndex = 0;
+	if (nSeries == 1) return 1;
+	std::cout << nSeries << "\n";
+	while (nSeries > fib(fibIndex + 1)) ++fibIndex; 
+	std::ifstream mainFileInput(mainFile);
+	for (unsigned int i = 0; i < nPhases - 1; ++i) subFiles.emplace_back("subFile" + std::to_string(i + 1) + ".txt", fib(fibIndex--), mainFileInput);
+	subFiles.emplace_back("subFile" + std::to_string(nPhases) + ".txt", 0, mainFileInput);
+	return 0;
+}
+
+template<class T>
+bool ExternalSort<T>::multiphaseMerge(std::list<FileSeriesHandler<T>>& files) {
+	typename std::list<FileSeriesHandler<T>>::iterator itLast = (--files.end());
+	bool emptyFiles = 0, allSeriesFinished = 0;
+
+	while (!allSeriesFinished) {
+		typename std::list<FileSeriesHandler<T>>::iterator itMin = files.begin();
+		allSeriesFinished = 1 && itMin->seriesFinished();
+		for (typename std::list<FileSeriesHandler<T>>::iterator it = (++files.begin()); it != itLast; ++it) {
+			if ((*it) < (*itMin)) itMin = it;
+			allSeriesFinished = allSeriesFinished && it->seriesFinished();
+		}
+		*itMin >> *itLast;
+		if (itMin->getSeries() == 0) emptyFiles = 1;
+	}
+
+	(*itLast).incSeries();
+	for (typename std::list<FileSeriesHandler<T>>::iterator it = files.begin(); it != (--files.end()); ++it) it->newSeries();
+	return emptyFiles;
+}
+
+template<class T>
+void ExternalSort<T>::clearFiles(std::list<FileSeriesHandler<T>>& files) {
+	auto itEmpty = files.end();
+	files.back().flushStream();
+	for (auto it = files.begin(); it != files.end();) {
+		if (it->getSeries() == 0) {
+			if (itEmpty == files.end()) itEmpty = it++;
+			else {
+				auto itErased = it++;
+				files.erase(itErased);
+			}
+		}
+		else ++it;
+	}
+	files.back().swap(*itEmpty);
+	files.back().clearStream();
+}
+
+template<class T>
+void ExternalSort<T>::copy(const std::string& from, const std::string& to) {
+	std::ifstream input(from);
+	std::ofstream output(to);
+	T temp;
+	while(input >> temp) output << temp << " ";
 }

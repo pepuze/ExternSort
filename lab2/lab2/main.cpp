@@ -1,9 +1,7 @@
 #include "ExternalSort.h"
-#include <string>
 
 int main() {
-	//ExternalSort<std::string> extSort;
-	//extSort.mergeSort("test.txt");
-	
+	ExternalSort<int> extSort;
+	extSort.multiphaseSort("test.txt", 5);
 	return 0;
 }
