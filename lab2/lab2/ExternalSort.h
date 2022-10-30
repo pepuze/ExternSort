@@ -7,7 +7,6 @@
 //Шаблон класса внешних сортировок: Прямое слияние | Многофазная сортировка
 template<class T>
 class ExternalSort {
-public:
 	unsigned int splitIn2Files(const std::string&, const std::string&, const std::string&, const unsigned int); //Разбиение значений из файла группами опред. размера
 	void merge2InFile(const std::string&, const std::string&, const std::string&, const unsigned int); //Слияние в двух файлов в файл группами опред. размера
 	bool dumpVals(std::ifstream&, std::ofstream&, unsigned int); //Считывание и вывод n значений из потока ввода в поток вывода, возвращает 1 если достигнут конец потока ввода
@@ -122,7 +121,6 @@ bool  ExternalSort<T>::multiphaseSplit(const std::string& mainFile, std::list<Fi
 	Fibonacci fib(nPhases - 2);
 	unsigned int nSeries = countSeries(mainFile), fibIndex = 0;
 	if (nSeries == 1) return 1;
-	std::cout << nSeries << "\n";
 	while (nSeries > fib(fibIndex + 1)) ++fibIndex; 
 	std::ifstream mainFileInput(mainFile);
 	for (unsigned int i = 0; i < nPhases - 1; ++i) subFiles.emplace_back("subFile" + std::to_string(i + 1) + ".txt", fib(fibIndex--), mainFileInput);

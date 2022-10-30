@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExternalSortDemo.cpp" />
     <ClCompile Include="Fibonacii.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExternalSort.h" />
+    <ClInclude Include="ExternalSortDemo.h" />
     <ClInclude Include="Fibonacci.h" />
     <ClInclude Include="FileSeriesHandler.h" />
   </ItemGroup>

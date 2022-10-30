@@ -1,4 +1,4 @@
-﻿  main.cpp
+﻿  ExternalSortDemo.cpp
 C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\xmemory(694,103): warning C4244: 'argument': conversion from '_Ty' to 'const unsigned int', possible loss of data
           with
           [
@@ -44,7 +44,7 @@ C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\list(993): message 
               _Ty=FileSeriesHandler<int>,
               _Alloc=std::allocator<FileSeriesHandler<int>>
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(127): message : see reference to function template instantiation 'void std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>>::emplace_back<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(126): message : see reference to function template instantiation 'void std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>>::emplace_back<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
           with
           [
               T=int
@@ -59,16 +59,16 @@ C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(35): message : see refer
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(33): message : while compiling class template member function 'void ExternalSort<int>::multiphaseSort(const std::string &,const unsigned int)'
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\main.cpp(5): message : see reference to function template instantiation 'void ExternalSort<int>::multiphaseSort(const std::string &,const unsigned int)' being compiled
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\main.cpp(4): message : see reference to class template instantiation 'ExternalSort<int>' being compiled
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(19,4): warning C4101: 'temp': unreferenced local variable
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(76): message : see reference to function template instantiation 'bool valReadable<T>(std::ifstream &,T &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(26): message : while compiling class template member function 'void ExternalSort<int>::mergeSort(const std::string &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.cpp(67): message : see reference to function template instantiation 'void ExternalSort<int>::mergeSort(const std::string &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.h(5): message : see reference to class template instantiation 'ExternalSort<int>' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(20,4): warning C4101: 'temp': unreferenced local variable
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(77): message : see reference to function template instantiation 'bool valReadable<T>(std::ifstream &,T &)' being compiled
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(63): message : while compiling class template member function 'FileSeriesHandler<T>::FileSeriesHandler(const std::string &,const unsigned int,std::ifstream &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(64): message : while compiling class template member function 'FileSeriesHandler<T>::FileSeriesHandler(const std::string &,const unsigned int,std::ifstream &)'
           with
           [
               T=int
@@ -78,37 +78,37 @@ C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\xmemory(694): messa
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(91): message : while compiling class template member function 'FileSeriesHandler<T>::~FileSeriesHandler(void)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(92): message : while compiling class template member function 'FileSeriesHandler<T>::~FileSeriesHandler(void)'
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\main.cpp(8): message : see reference to function template instantiation 'FileSeriesHandler<T>::~FileSeriesHandler(void)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.cpp(86): message : see reference to function template instantiation 'FileSeriesHandler<T>::~FileSeriesHandler(void)' being compiled
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(113): message : while compiling class template member function 'bool FileSeriesHandler<T>::setNext(void)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(114): message : while compiling class template member function 'bool FileSeriesHandler<T>::setNext(void)'
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(108): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::setNext(void)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(109): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::setNext(void)' being compiled
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(96): message : while compiling class template member function 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(97): message : while compiling class template member function 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)'
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(141): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(140): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)' being compiled
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(133): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(132): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)'
           with
           [
               T=int
@@ -118,4 +118,6 @@ C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(38): message : see refer
           [
               T=int
           ]
+  main.cpp
+  Generating Code...
   lab2.vcxproj -> C:\Everything\labs\alg_ds\lab2\lab2\x64\Debug\lab2.exe
