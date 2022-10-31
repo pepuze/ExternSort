@@ -145,7 +145,7 @@ bool ExternalSort<T>::multiphaseMerge(std::list<FileSeriesHandler<T>>& files) {
 	}
 
 	(*itLast).incSeries();
-	for (typename std::list<FileSeriesHandler<T>>::iterator it = files.begin(); it != (--files.end()); ++it) it->newSeries();
+	for (typename std::list<FileSeriesHandler<T>>::iterator it = files.begin(); it != (files.end()); ++it) it->newSeries();
 	return emptyFiles;
 }
 
