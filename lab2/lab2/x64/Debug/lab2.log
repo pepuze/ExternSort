@@ -1,6 +1,6 @@
 ﻿  ExternalSortDemo.cpp
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(135,1): warning C4244: '+=': conversion from 'unsigned __int64' to 'unsigned int', possible loss of data
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(127): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseSplit(const std::string &,std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &,const unsigned int)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(133,1): warning C4244: '+=': conversion from 'unsigned __int64' to 'unsigned int', possible loss of data
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(126): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseSplit(const std::string &,std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &,const unsigned int)'
           with
           [
               T=int
@@ -11,7 +11,7 @@ C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(37): message : see refer
               T=int
           ]
 C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(27): message : while compiling class template member function 'void ExternalSort<int>::mergeSort(const std::string &)'
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.cpp(67): message : see reference to function template instantiation 'void ExternalSort<int>::mergeSort(const std::string &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.cpp(82): message : see reference to function template instantiation 'void ExternalSort<int>::mergeSort(const std::string &)' being compiled
 C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.h(5): message : see reference to class template instantiation 'ExternalSort<int>' being compiled
 C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(20,4): warning C4101: 'temp': unreferenced local variable
 C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(77): message : see reference to function template instantiation 'bool valReadable<T>(std::ifstream &,T &)' being compiled
@@ -34,7 +34,7 @@ C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(92): message : whil
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.cpp(86): message : see reference to function template instantiation 'FileSeriesHandler<T>::~FileSeriesHandler(void)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.cpp(139): message : see reference to function template instantiation 'FileSeriesHandler<T>::~FileSeriesHandler(void)' being compiled
           with
           [
               T=int
@@ -54,22 +54,19 @@ C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(97): message : whil
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(151): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(149): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)' being compiled
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(143): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(141): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)'
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(44): message : see reference to function template instantiation 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(43): message : see reference to function template instantiation 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)' being compiled
           with
           [
               T=int
           ]
-  Fibonacii.cpp
-  main.cpp
-  Generating Code...
   lab2.vcxproj -> C:\Everything\labs\alg_ds\lab2\lab2\x64\Debug\lab2.exe

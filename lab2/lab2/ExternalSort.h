@@ -40,7 +40,6 @@ void ExternalSort<T>::multiphaseSort(const std::string& mainFile, const unsigned
 		typename std::list<FileSeriesHandler<T>>::iterator it;
 		unsigned int nRuns = 0;
 		for (it = subFiles.begin(); it != subFiles.end(); ++it) nRuns += it->getSeries();
-		std::cout << nRuns << " runs\n";
 		while (!multiphaseMerge(subFiles)) {}
 		clearFiles(subFiles);
 
@@ -127,7 +126,6 @@ template<class T>
 bool  ExternalSort<T>::multiphaseSplit(const std::string& mainFile, std::list<FileSeriesHandler<T>>& subFiles, const unsigned int nPhases) {
 	Fibonacci fib(nPhases - 2);
 	unsigned int nSeries = countSeries(mainFile), fibIndex = 0, sum = 0;
-	std::cout << nSeries << "\n";
 	if (nSeries == 1) return 1;
 	while (nSeries > fib.sumNeighbours(fibIndex)) ++fibIndex; 
 	std::ifstream mainFileInput(mainFile);
