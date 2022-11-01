@@ -7,6 +7,7 @@ struct Fibonacci {
 	Fibonacci();
 	
 	unsigned long long operator()(const unsigned int);
+	unsigned long long sumNeighbours(const unsigned int);
 	unsigned int getOrder() const { return order; }
 
 private:

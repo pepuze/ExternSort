@@ -2,6 +2,7 @@
 #include "FileSeriesHandler.h"
 #include "Fibonacci.h"
 #include <list>
+#include <chrono>
 
 
 //Шаблон класса внешних сортировок: Прямое слияние | Многофазная сортировка
@@ -25,18 +26,24 @@ public:
 template<class T>
 void ExternalSort<T>::mergeSort(const std::string& mainFile) {
 	const std::string subFile1 = "subFile1.txt", subFile2 = "subFile2.txt";
-	for (unsigned int groupSize = 1; groupSize < splitIn2Files(mainFile, subFile1, subFile2, groupSize); groupSize *= 2)
+	for (unsigned int groupSize = 1; groupSize < splitIn2Files(mainFile, subFile1, subFile2, groupSize); groupSize *= 2) {
 		merge2InFile(mainFile, subFile1, subFile2, groupSize);
+	}
 }
 
 template<class T>
 void ExternalSort<T>::multiphaseSort(const std::string& mainFile, const unsigned int nPhases) {
 	std::list<FileSeriesHandler<T>> subFiles;
-	if (multiphaseSplit(mainFile, subFiles, nPhases)) return;;
+	if (multiphaseSplit(mainFile, subFiles, nPhases)) return;
 
 	while (subFiles.size() > 2) {
+		typename std::list<FileSeriesHandler<T>>::iterator it;
+		unsigned int nRuns = 0;
+		for (it = subFiles.begin(); it != subFiles.end(); ++it) nRuns += it->getSeries();
+		std::cout << nRuns << " runs\n";
 		while (!multiphaseMerge(subFiles)) {}
 		clearFiles(subFiles);
+
 	}
 	copy(subFiles.front().getPath(), mainFile);
 }
@@ -119,11 +126,15 @@ unsigned int ExternalSort<T>::countSeries(const std::string& filePath) {
 template<class T>
 bool  ExternalSort<T>::multiphaseSplit(const std::string& mainFile, std::list<FileSeriesHandler<T>>& subFiles, const unsigned int nPhases) {
 	Fibonacci fib(nPhases - 2);
-	unsigned int nSeries = countSeries(mainFile), fibIndex = 0;
+	unsigned int nSeries = countSeries(mainFile), fibIndex = 0, sum = 0;
+	std::cout << nSeries << "\n";
 	if (nSeries == 1) return 1;
-	while (nSeries > fib(fibIndex + 1)) ++fibIndex; 
+	while (nSeries > fib.sumNeighbours(fibIndex)) ++fibIndex; 
 	std::ifstream mainFileInput(mainFile);
-	for (unsigned int i = 0; i < nPhases - 1; ++i) subFiles.emplace_back("subFile" + std::to_string(i + 1) + ".txt", fib(fibIndex--), mainFileInput);
+	for (unsigned int i = 0; i < nPhases - 1; ++i, --fibIndex) {
+		sum += fib(fibIndex);
+		subFiles.emplace_back("subFile" + std::to_string(i + 1) + ".txt", sum, mainFileInput);
+	}
 	subFiles.emplace_back("subFile" + std::to_string(nPhases) + ".txt", 0, mainFileInput);
 	return 0;
 }

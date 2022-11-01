@@ -56,7 +56,7 @@ public:
 	void newSeries() { seriesEnd = 0; }
 	void incSeries() { ++series; }
 	void flushStream() { fileStream.flush(); fileStream.seekg(0); nextVal = peekNext(); }
-	void clearStream() { fileStream.clear(); fileStream.seekp(0); fileStream.seekg(0); std::ofstream clearFile(filePath); }
+	void clearStream() { fileStream.clear(); fileStream.seekp(0); std::ofstream clearFile(filePath); }
 };
 
 
@@ -96,7 +96,7 @@ FileSeriesHandler<T>::~FileSeriesHandler() {
 template<class T>
 bool FileSeriesHandler<T>::operator<(const FileSeriesHandler<T>& fsHandler) {
 	if (seriesEnd || fsHandler.seriesEnd) return !seriesEnd;
-	return ((nextVal < fsHandler.nextVal) || fileEnd || fsHandler.fileEnd);
+	return (nextVal < fsHandler.nextVal);
 }
 
 template<class T>

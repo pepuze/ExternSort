@@ -16,3 +16,12 @@ unsigned long long Fibonacci::operator()(const unsigned int n) {
 	}
 	return Fibs[n];
 }
+
+unsigned long long Fibonacci::sumNeighbours(const unsigned int index) {
+	if (index < order) return 0;
+	unsigned long long sum = 0;
+	unsigned int mltp = order + 1;
+	for (unsigned int i = index; (index - i) < (order + 1); --i, --mltp)
+		sum += mltp * this->operator()(i);
+	return sum;
+}

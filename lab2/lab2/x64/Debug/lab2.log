@@ -1,65 +1,16 @@
 ﻿  ExternalSortDemo.cpp
-C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\xmemory(694,103): warning C4244: 'argument': conversion from '_Ty' to 'const unsigned int', possible loss of data
-          with
-          [
-              _Ty=unsigned __int64
-          ]
-C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\list(585): message : see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(_Alloc &,_Objty *const ,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
-          with
-          [
-              _Alloc=std::allocator<std::_List_node<FileSeriesHandler<int>,std::_Default_allocator_traits<std::allocator<FileSeriesHandler<int>>>::void_pointer>>,
-              _Ty=FileSeriesHandler<int>,
-              _Objty=FileSeriesHandler<int>
-          ]
-C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\list(587): message : see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(_Alloc &,_Objty *const ,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
-          with
-          [
-              _Alloc=std::allocator<std::_List_node<FileSeriesHandler<int>,std::_Default_allocator_traits<std::allocator<FileSeriesHandler<int>>>::void_pointer>>,
-              _Ty=FileSeriesHandler<int>,
-              _Objty=FileSeriesHandler<int>
-          ]
-C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\list(1012): message : see reference to function template instantiation 'std::_List_node_emplace_op2<std::allocator<std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer>>>::_List_node_emplace_op2<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(_Alnode &,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
-          with
-          [
-              _Ty=FileSeriesHandler<int>,
-              _Alloc=std::allocator<FileSeriesHandler<int>>,
-              _Alnode=std::allocator<std::_List_node<FileSeriesHandler<int>,std::_Default_allocator_traits<std::allocator<FileSeriesHandler<int>>>::void_pointer>>
-          ]
-C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\list(1018): message : see reference to function template instantiation 'std::_List_node_emplace_op2<std::allocator<std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer>>>::_List_node_emplace_op2<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(_Alnode &,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
-          with
-          [
-              _Ty=FileSeriesHandler<int>,
-              _Alloc=std::allocator<FileSeriesHandler<int>>,
-              _Alnode=std::allocator<std::_List_node<FileSeriesHandler<int>,std::_Default_allocator_traits<std::allocator<FileSeriesHandler<int>>>::void_pointer>>
-          ]
-C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\list(992): message : see reference to function template instantiation 'std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer> *std::list<_Ty,_Alloc>::_Emplace<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer> *const ,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
-          with
-          [
-              _Ty=FileSeriesHandler<int>,
-              _Alloc=std::allocator<FileSeriesHandler<int>>
-          ]
-C:\Everything\VisualStudio\VC\Tools\MSVC\14.27.29110\include\list(993): message : see reference to function template instantiation 'std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer> *std::list<_Ty,_Alloc>::_Emplace<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(std::_List_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer> *const ,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
-          with
-          [
-              _Ty=FileSeriesHandler<int>,
-              _Alloc=std::allocator<FileSeriesHandler<int>>
-          ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(126): message : see reference to function template instantiation 'void std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>>::emplace_back<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,unsigned __int64,std::ifstream&>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,unsigned __int64 &&,std::ifstream &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(135,1): warning C4244: '+=': conversion from 'unsigned __int64' to 'unsigned int', possible loss of data
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(127): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseSplit(const std::string &,std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &,const unsigned int)'
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(120): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseSplit(const std::string &,std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &,const unsigned int)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(37): message : see reference to function template instantiation 'bool ExternalSort<int>::multiphaseSplit(const std::string &,std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &,const unsigned int)' being compiled
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(35): message : see reference to function template instantiation 'bool ExternalSort<int>::multiphaseSplit(const std::string &,std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &,const unsigned int)' being compiled
-          with
-          [
-              T=int
-          ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(26): message : while compiling class template member function 'void ExternalSort<int>::mergeSort(const std::string &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(27): message : while compiling class template member function 'void ExternalSort<int>::mergeSort(const std::string &)'
 C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.cpp(67): message : see reference to function template instantiation 'void ExternalSort<int>::mergeSort(const std::string &)' being compiled
 C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSortDemo.h(5): message : see reference to class template instantiation 'ExternalSort<int>' being compiled
 C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(20,4): warning C4101: 'temp': unreferenced local variable
@@ -103,21 +54,22 @@ C:\Everything\labs\alg_ds\lab2\lab2\lab2\FileSeriesHandler.h(97): message : whil
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(140): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(151): message : see reference to function template instantiation 'bool FileSeriesHandler<T>::operator <(const FileSeriesHandler<T> &)' being compiled
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(132): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)'
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(143): message : while compiling class template member function 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)'
           with
           [
               T=int
           ]
-C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(38): message : see reference to function template instantiation 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)' being compiled
+C:\Everything\labs\alg_ds\lab2\lab2\lab2\ExternalSort.h(44): message : see reference to function template instantiation 'bool ExternalSort<int>::multiphaseMerge(std::list<FileSeriesHandler<T>,std::allocator<FileSeriesHandler<T>>> &)' being compiled
           with
           [
               T=int
           ]
+  Fibonacii.cpp
   main.cpp
   Generating Code...
   lab2.vcxproj -> C:\Everything\labs\alg_ds\lab2\lab2\x64\Debug\lab2.exe
